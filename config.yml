@@ -1,0 +1,26 @@
+---
+# 
+# Configuration for Shinken WebUI
+# 
+
+# [ Authentication ]
+# auth_method
+#   Design of the password to use
+#   Availbale methods are: basic (List of users), ldap (Active directory)
+auth_method: basic
+# auth_list
+#   List of users when auth_method = basic
+#   Key is username, value is password (digest)
+auth_list:
+  demo: demo
+# auth_digest
+#   Compute password with the digest method specified
+#   See OpenSSL dgst command for further details
+#   Set none for clear password
+auth_digest: none
+
+# 
+# Active Directory (or LDAP)
+# 
+
+...
