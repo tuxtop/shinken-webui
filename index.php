@@ -30,7 +30,4 @@ $app = new \App($ref);
 # Dashboard (default page)
 $app->url('/dashboard', 'Misc\Dashboard');
 
-# Run application
-$app->run();
-
 ?>
