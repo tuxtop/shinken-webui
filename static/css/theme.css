@@ -1,4 +1,112 @@
 /**
+ * Default HTML
+ */
+body
+{
+	cursor: default;
+}
+
+
+/**
+ * Header
+ */
+header.shinken
+{
+	background: transparent url('/static/img/cave.jpg') no-repeat center bottom;
+	background-size: 100% auto;
+}
+header.shinken .bg
+{
+	background-color: rgba(0,0,0,0.5);
+	padding: 15px 0px;
+	box-shadow: rgba(0,0,0,0.3) 0px -1px 12px inset;
+}
+header.shinken .container,
+header.shinken .container .row
+{
+	margin: 0px auto;
+	padding: 0px;
+}
+header.shinken h1,
+header.shinken h2
+{
+	margin: 0px;
+	padding: 0px;
+	text-shadow: rgba(0,0,0,0.5) 1px 1px 0px;
+}
+header.shinken h1
+{
+	font-size: 2.2rem;
+	color: #ffffff;
+	margin-bottom: 10px;
+}
+header.shinken h2
+{
+	font-size: 1rem;
+	color: #cfcfcf;
+	padding-left: 30px;
+}
+header.shinken input
+{
+	color: #ffffff;
+}
+header.shinken input[type=text]:focus:not([readonly])
+{
+	border-bottom: 1px solid #c6ff00;
+	box-shadow: 0 1px 0 0 #c6ff00;
+}
+header.shinken a.bookmark,
+header.shinken a.menu
+{
+	display: inline-block;
+	margin-top: 16px;
+}
+header.shinken a.bookmark i
+{
+	color: #eeff41;
+}
+header.shinken a.bookmark:hover i
+{
+	color: #c6ff00;
+}
+header.shinken a.menu i
+{
+	color: #afafaf;
+}
+header.shinken a.menu:hover i
+{
+	color: #039be5;
+}
+header.shinken .dropdown-content
+{
+	white-space: nowrap;
+	width: auto !important;
+}
+
+
+/**
+ * Menu
+ */
+#menu a
+{
+	padding-left: 12px;
+}
+#menu a i
+{
+	float: left;
+	width: 24px;
+	font-size: 24px;
+	margin-right: 10px;
+	vertical-align: text-top;
+}
+#menu .collapsible-body a
+{
+	padding-left: 42px;
+	font-weight: normal;
+}
+
+
+/**
  * Error page
  */
 .error h1
@@ -6,4 +114,30 @@
 	padding: 5px 0px 10px 0px;
 	margin: 0px;
 	font-size: 3rem;
+}
+
+
+/**
+ * Dashboard
+ */
+.dashboard h1
+{
+	font-weight: 300;
+	font-size: 1.6rem;
+}
+.dashboard h2
+{
+	font-weight: 300;
+	font-size: 1.4rem;
+	color: #777777;
+	margin-bottom: 0px;
+}
+.dashboard .dashboard-icons i
+{
+	font-size: 2.5rem;
+}
+.dashboard .dashboard-icons p
+{
+	margin: 0px;
+	padding: 0px;
 }
