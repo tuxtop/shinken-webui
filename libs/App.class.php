@@ -18,6 +18,7 @@ class App
     public $view;       # HTML templating system
     public $class;      # Saved class
     public $ref;        # Propagation of the initial website references
+    public $lock;       # Prevent unloaded class error
 
 
     /**
@@ -43,9 +44,14 @@ class App
         $view->setCompileDir($_SERVER['DOCUMENT_ROOT'].'/cache');
         $view->setTemplateDir($_SERVER['DOCUMENT_ROOT'].'/views');
         $this->view = &$view;
+        $this->ref->view = &$view;
+        $this->ref->app = &$this;
 
         # Detect authentication
         $auth = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
+
+        # 
+        register_shutdown_function(array($this, 'run'));
 
         # Start catching output
         ob_start();
@@ -56,6 +62,81 @@ class App
             ob_clean();
             $this->auth();
         }
+
+    }
+
+
+    /**
+     * livestatus
+     *
+     * @param $command string Livestatus command
+     * @return mixed
+     */
+    public function livestatus($command=null, $opts=null, $raw=null)
+    {
+
+        # Init vars
+        $host = $this->config['livestatus']['host'];
+        $port = $this->config['livestatus']['port'];
+        list($headers, $rawdata, $data, $is_column_opt) = array(null, '', array(), 0);
+
+        # Build command line
+        $cl = "${command}\n";
+        if (is_array($opts))
+        {
+            foreach ($opts as $opt)
+            {
+                if (preg_match('/^Columns:\s*(.*)$/', $opt, $m))
+                {
+                    $headers = preg_split('/\s+/', $m[1]);
+                    $is_column_opt = 1;
+                }
+                $cl.= "${opt}\n";
+            }
+        }
+        $cl.= "\n";
+
+        # Open session
+        if ($sock = fsockopen($host, $port, $errno, $error))
+        {
+            try
+            {
+                stream_set_timeout($sock, 1);
+                fputs($sock, $cl);
+                $i = 0;
+                while ($line = fgets($sock))
+                {
+                    if ($raw) $rawdata.= $line;
+                    $line = trim($line);
+                    if (!$line) break;
+                    if (!$is_column_opt and $i==0) $headers = explode(';', $line);
+                    else
+                    {
+                        $tmp = explode(';', $line);
+                        $tab = array();
+                        for ($i=0; $i<count($headers); $i++)
+                        {
+                            $tab[$headers[$i]] = $tmp[$i];
+                        }
+                        $data[]= $tab;
+                    }
+                    $i++;
+                }
+                fclose($sock);
+            }
+            catch (\Exception $e)
+            {
+                    throw new \Exception("Failed to communicate with ${host}@${port}: ".$e->getMessage());
+            }
+        }
+        else
+        {
+            throw new \Exception("Failed to connect to ${host}@${port}: $error");
+        }
+
+        # Return data
+        if ($raw) return $rawdata;
+        return array( $headers, $data );
 
     }
 
@@ -98,6 +179,7 @@ class App
 
         # Init vars
         $a = array();
+        $this->lock = true;
 
         # Catch sign in
         $username = isset($_POST['username']) ? $_POST['username'] : null;
@@ -136,6 +218,9 @@ class App
         # Get view
         $this->view->output('common/login.tpl', $a);
 
+        # 
+        exit(0);
+
     }
 
 
@@ -149,7 +234,7 @@ class App
     {
 
         # No class
-        if (!$this->class)
+        if (!$this->lock and !$this->class)
         {
             http_response_code(404);
             ob_end_clean();
@@ -162,8 +247,26 @@ class App
 </div>
 HTML;
         }
-        else
+        elseif (!$this->lock)
         {
+
+            # Draw header
+            $bookmarks = array();
+            foreach ($this->config['bookmarks'] as $bm)
+            {
+                $bookmarks[] = array(
+                    'name' => $bm['name'],
+                    'url' => '/search?filter='.urlencode(implode(' ', $bm['rules']))
+                );
+            }
+            $a = array(
+                'product' => $this->config['product'],
+                'bookmarks' => $bookmarks,
+                'search' => isset($_GET['filter']) ? $_GET['filter'] : null,
+            );
+            $this->view->output('common/header.tpl', $a);
+
+            # Draw content
             try
             {
                 $clname = $this->class['name'];
@@ -172,6 +275,7 @@ HTML;
             catch (Exception $e)
             {
                 http_response_code(500);
+                error_log($e->getMessage());
                 ob_end_clean();
                 print <<<HTML
 <div class="container">
