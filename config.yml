@@ -3,6 +3,12 @@
 # Configuration for Shinken WebUI
 # 
 
+# [ Product ]
+# product
+#   Name of your Business Unit, of the product for which one that instance
+#   is dedicated for, whatever you want. It is a free text.
+product: MyShinken
+
 # [ Authentication ]
 # auth_method
 #   Design of the password to use
@@ -18,9 +24,22 @@ auth_list:
 #   See OpenSSL dgst command for further details
 #   Set none for clear password
 auth_digest: none
+# ldap
 
-# 
-# Active Directory (or LDAP)
-# 
+# [ Shinken ]
+# livestatus
+#   Configuration to bind Livestatus
+livestatus:
+  host: localhost
+  port: 50000
+
+# [ Bookmarks ]
+# bookrmarks
+#   Table of predifined bookmarks shared with all users.
+bookmarks:
+  - name: Double Trouble
+    rules:
+      - bi>=4
+      - state>=1
 
 ...
