@@ -1,6 +1,6 @@
 <div class="container dashboard">
 
- <h1>Dashboard</h1>
+ <h1 class="heading">Dashboard</h1>
  <div class="row center-align dashboard-icons">
   <div class="col s3"></div>
   <div class="col s2">
