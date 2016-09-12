@@ -33,4 +33,7 @@ $app->url('/dashboard', 'Misc\Dashboard');
 # Configuration pages
 $app->url('/contacts', 'Config\Contacts');
 
+# Shinken status
+$app->url('/shinken', 'Misc\Status');
+
 ?>

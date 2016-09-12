@@ -51,7 +51,7 @@
    </li>
   </ul>
  </li>
- <li><a href="/status"><i class="material-icons">favorite</i>Shinken Status</a></li>
+ <li><a href="/shinken"><i class="material-icons">favorite</i>Shinken Status</a></li>
 </ul>
 
 <script type="text/javascript"> 
