@@ -1,6 +1,13 @@
 /**
  * Default HTML
  */
+html,
+body
+{
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
 body
 {
 	cursor: default;
@@ -85,6 +92,68 @@ header.shinken .dropdown-content
 
 
 /**
+ * Login page
+ */
+.login
+{
+	background: transparent url('/static/img/cave.jpg') no-repeat center center;
+	background-size: 100% auto;
+	height: 100%;
+	padding: 20px;
+	box-sizing: border-box;
+}
+.login > h1,
+.login > h2
+{
+	font-weight: 300;
+	text-align: center;
+	text-shadow: rgba(0,0,0,1) 0px 1px 6px;
+	margin: 0px;
+	padding: 0px;
+	line-height: 2.5rem;
+}
+.login > h1
+{
+	font-size: 2rem;
+	color: #ffffff;
+}
+.login > h2
+{
+	font-size: 1.6rem;
+	color: #afafaf;
+}
+.login .card-panel
+{
+	width: 400px;
+	margin: 30px auto;
+}
+.login .card-panel h3
+{
+	font-size: 1.3rem;
+	padding: 0px;
+	margin: 0px;
+}
+.login .card-panel input
+{
+	margin: 0px;
+}
+.login .card-panel p
+{
+	margin: 5px 0px;
+}
+.login .card-panel .btn
+{
+	margin-top: 10px;
+	width: 100%;
+}
+.login .card-panel input:focus:not([readonly])
+{
+	border-bottom: 1px solid #bf360c;
+	box-shadow: 0 1px 0 0 #bf360c;
+}
+
+
+/**
  * Menu
  */
 #menu a
@@ -118,20 +187,25 @@ header.shinken .dropdown-content
 
 
 /**
- * Dashboard
+ * Headings
  */
-.dashboard h1
+h1.heading
 {
 	font-weight: 300;
 	font-size: 1.6rem;
 }
-.dashboard h2
+h2.heading
 {
 	font-weight: 300;
 	font-size: 1.4rem;
 	color: #777777;
 	margin-bottom: 0px;
 }
+
+
+/**
+ * Dashboard
+ */
 .dashboard .dashboard-icons i
 {
 	font-size: 2.5rem;
@@ -140,4 +214,37 @@ header.shinken .dropdown-content
 {
 	margin: 0px;
 	padding: 0px;
+}
+
+
+/**
+ * Overwrite default Materialize style
+ */
+.btn
+{
+	text-transform: none;
+}
+table thead th
+{
+	text-align: center;
+}
+table.striped tbody tr:nth-child(odd) td
+{
+	background-color: #f9f9f9;
+}
+table.highlight tbody tr:nth-child(odd):hover td,
+table.highlight tbody tr:nth-child(even):hover td
+{
+	background-color: #f0f0f0;
+}
+table.condensed thead tr th,
+table.condensed tbody tr td
+{
+	padding: 5px 12px;
+}
+table.condensed thead tr th.ico,
+table.condensed tbody tr td.ico
+{
+	width: 22px;
+	text-align: center;
 }
