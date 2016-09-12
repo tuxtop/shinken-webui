@@ -30,4 +30,7 @@ $app = new \App($ref);
 # Dashboard (default page)
 $app->url('/dashboard', 'Misc\Dashboard');
 
+# Configuration pages
+$app->url('/contacts', 'Config\Contacts');
+
 ?>
