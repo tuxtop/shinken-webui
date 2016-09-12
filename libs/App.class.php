@@ -188,6 +188,9 @@ class App
         # Digest password
         if ($this->config['auth_digest'] != 'none') $password = openssl_digest($password, $this->config['auth_digest']);
 
+        # Product infos
+        $a['product'] = $this->config['product'];
+
         # Perform sign in
         if ($username and $password)
         {
