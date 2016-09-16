@@ -44,7 +44,7 @@
     <div class="collapsible-body">
      <ul>
       <li><a href="/hostgroups"><i class="material-icons">group_work</i>Hosts groups</a></li>
-      <li><a href="/contactsgroups"><i class="material-icons">group</i>Contacts groups</a></li>
+      <li><a href="/contactgroups"><i class="material-icons">group</i>Contacts groups</a></li>
       <li><a href="/contacts"><i class="material-icons">contacts</i>Contacts</a></li>
      </ul>
     </div>

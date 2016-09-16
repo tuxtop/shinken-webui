@@ -31,6 +31,7 @@ $app = new \App($ref);
 $app->url('/dashboard', 'Misc\Dashboard');
 
 # Configuration pages
+$app->url('/contactgroups', 'Config\ContactGroups');
 $app->url('/contacts', 'Config\Contacts');
 
 # Shinken status
