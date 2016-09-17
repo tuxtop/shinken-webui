@@ -16,3 +16,5 @@ Alternative Web User Interface for Shinken
 
 - Shinken
 - mod_livestatus enabled
+- PHP 5.6
+- [PHP PECL YAML](http://php.net/manual/fr/book.yaml.php)
