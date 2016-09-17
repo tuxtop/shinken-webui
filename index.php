@@ -35,6 +35,9 @@ $app->url('/hostgroups', 'Config\HostGroups');
 $app->url('/contactgroups', 'Config\ContactGroups');
 $app->url('/contacts', 'Config\Contacts');
 
+# Search engine
+$app->url('/search', 'Status\Search');
+
 # Shinken status
 $app->url('/shinken', 'Misc\Status');
 
