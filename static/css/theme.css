@@ -228,9 +228,15 @@ table thead th
 {
 	text-align: center;
 }
-table.striped tbody tr:nth-child(odd) td
+table.striped tbody tr:nth-child(odd) td,
+table.striped tbody tr.odd td
 {
 	background-color: #f9f9f9;
+}
+table.striped tbody tr:nth-child(even) td,
+table.striped tbody tr.even td
+{
+	background-color: #ffffff;
 }
 table.highlight tbody tr:nth-child(odd):hover td,
 table.highlight tbody tr:nth-child(even):hover td
@@ -247,4 +253,61 @@ table.condensed tbody tr td.ico
 {
 	width: 22px;
 	text-align: center;
+}
+input[type=checkbox].default-browser
+{
+	display: inline;
+	position: relative;
+	left: auto;
+	opacity: 1;
+}
+
+
+/**
+ * Search table
+ */
+table.search tr.opts
+{
+	display: none;
+}
+table.search tr.opts td
+{
+	background-color: #e5e5e5 !important;
+	border-bottom: 3px solid #cfcfcf;
+	padding: 6px 12px;
+}
+table.search tr.opts td .card-panel.advanced
+{
+	overflow: auto;
+	max-height: 100px;
+}
+table.search tr.opts td .btn
+{
+	padding: 0px 12px 1px 12px;
+	font-size: 0.9em;
+}
+table.search tr.opts td .btn i
+{
+	vertical-align: text-top;
+	margin: -10px 6px 0px 0px;
+}
+table.search tr td.checkbox
+{
+	width: 16px;
+	vertical-align: middle;
+	padding: 7px 10px 0px 10px;
+}
+table.search tr td.checkbox input[type=checkbox]
+{
+	width: 16px;
+	height: 16px;
+}
+
+
+/**
+ *
+ */
+.full-width-container
+{
+	padding: 12px 35px;
 }
