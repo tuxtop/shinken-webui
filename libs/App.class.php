@@ -106,13 +106,14 @@ class App
                 $i = 0;
                 while ($line = fgets($sock))
                 {
+                    if (preg_match('/invalid GET request/', $line)) return null;
                     if ($raw) $rawdata.= $line;
                     $line = trim($line);
                     if (!$line) break;
-                    if (!$is_column_opt and $i==0) $headers = explode(';', $line);
+                    if (!$is_column_opt and $i==0) $headers = str_getcsv($line, ';', '"');
                     else
                     {
-                        $tmp = explode(';', $line);
+                        $tmp = str_getcsv($line, ';', '"');
                         $tab = array();
                         for ($i=0; $i<count($headers); $i++)
                         {
