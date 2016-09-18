@@ -266,15 +266,23 @@ input[type=checkbox].default-browser
 /**
  * Search table
  */
+table.search tr td
+{
+	border-bottom: 1px solid #e0e0e0;
+}
 table.search tr.opts
 {
 	display: none;
 }
 table.search tr.opts td
 {
-	background-color: #e5e5e5 !important;
+	background: #e5e5e5 linear-gradient(rgba(255,255,255,0.3),rgba(255,255,255,0.6)) !important;
 	border-bottom: 3px solid #cfcfcf;
 	padding: 6px 12px;
+}
+table.search tr.opts td:first-of-type
+{
+	padding-left: 52px;
 }
 table.search tr.opts td .card-panel.advanced
 {
@@ -297,10 +305,35 @@ table.search tr td.checkbox
 	vertical-align: middle;
 	padding: 7px 10px 0px 10px;
 }
+table.search tr td.ico
+{
+	width: 16px;
+	padding-top: 9px;
+	padding-bottom: 3px;
+	text-align: center;
+}
 table.search tr td.checkbox input[type=checkbox]
 {
 	width: 16px;
 	height: 16px;
+}
+table.search tr.warning td
+{
+	background-color: #ffe0b2 !important;
+}
+table.search tr.critical td
+{
+	background-color: #ffcdd2 !important;
+}
+table.search tr.unknown td
+{
+	background-color: #e1bee7 !important;
+}
+table.search tr.warning:hover td,
+table.search tr.critical:hover td,
+table.search tr.unknown:hover td
+{
+	background-image: linear-gradient(rgba(255,255,255,0.5),rgba(255,255,255,0.5));
 }
 
 

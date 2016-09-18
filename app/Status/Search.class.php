@@ -70,11 +70,35 @@ class Search
 
         # States
         $states = array(
-            0 => array( 'color' => 'green', 'text' => 'OK', 'background' => '' ),
-            1 => array( 'color' => 'orange', 'text' => 'WARNING', 'background' => 'orange lighten-4' ),
-            2 => array( 'color' => 'red', 'text' => 'CRITICAL', 'background' => 'red lighten-4' ),
-            3 => array( 'color' => 'purple', 'text' => 'UNKNOWN' ),
-            255 => array( 'color' => 'light-blue', 'text' => 'PLUGIN ERROR' ),
+            0 => array(
+                'color'      => 'green',
+                'text'       => '<i class="material-icons">check_circle</i>',
+                'background' => '',
+                'tooltip'    => 'OK',
+            ),
+            1 => array(
+                'color'      => 'orange',
+                'text'       => '<i class="material-icons">warning</i>',
+                'background' => 'warning',
+                'tooltip'    => 'WARNING',
+            ),
+            2 => array(
+                'color'      => 'red',
+                'text'       => '<i class="material-icons">report</i>',
+                'background' => 'critical',
+                'tooltip'    => 'CRITICAL',
+            ),
+            3 => array(
+                'color'      => 'purple',
+                'text'       => '<i class="material-icons">help</i>',
+                'background' => 'unknown',
+                'tooltip'    => 'UNKNOWN',
+            ),
+            255 => array(
+                'color'      => 'blue-grey',
+                'text'       => '<i class="material-icons">remove_circle</i>',
+                'tooltip'    => 'PLUGIN ERROR',
+            ),
         );
 
         # Compute Search

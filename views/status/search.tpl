@@ -10,7 +10,7 @@
     <td class="checkbox"><input type="checkbox" name="service[{$id}]" class="default-browser" /></td>
     <td>{$hostname}</td>
     <td><a href="/status/{$url}">{$service}</a></td>
-    <td class="{$status.color}-text">{$status.text}</td>
+    <td class="{$status.color}-text tooltiped center-align ico" data-tooltip="{$status.tooltip}" data-position="bottom">{$status.text}</td>
     <td>{$output}</td>
    </tr>
    <tr class="opts">
@@ -37,5 +37,6 @@
  	var b = a.css('display');
  	a.css('display', b == 'table-row' ? 'none' : 'table-row');
  });
+ $('[data-tooltip]').tooltip();
  </script>
 </div>
