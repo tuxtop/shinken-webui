@@ -302,6 +302,7 @@ HTML;
 <html>
  <head>
   <title>$this->title</title>
+  <link href="/static/img/favicon.png" rel="SHORTCUT ICON" type="image/png" />
   <link href="/vendors/materialize/css/materialize.min.css" rel="STYLESHEET" type="text/css" media="screen" />
   <link href="/vendors/material-icons/material-icons.css" rel="STYLESHEET" type="text/css" media="screen" />
   <link href="/static/css/theme.css" rel="STYLESHEET" type="text/css" media="screen" />
