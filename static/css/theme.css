@@ -344,3 +344,33 @@ table.search tr.unknown:hover td
 {
 	padding: 12px 35px;
 }
+
+
+/**
+ * Details page
+ */
+div.col.details-settings p
+{
+	margin: 0px;
+	padding: 0px;
+}
+div.col.details-settings i
+{
+	vertical-align: text-top;
+	font-size: 1.2em;
+	margin-right: 6px;
+}
+div.col.details-settings table tr td
+{
+	padding: 0px 15px;
+}
+div.col.status
+{
+	font-size: 1.3em;
+}
+div.col.status i
+{
+	vertical-align: text-top;
+	font-size: 1.5rem;
+	margin-right: 10px;
+}
