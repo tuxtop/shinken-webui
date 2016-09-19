@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Shinken WebUI - Search Engine page
+ * Shinken WebUI - Details page
  *
  * @author Julien "TuxTop" Dumont
  */
