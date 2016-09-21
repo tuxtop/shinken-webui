@@ -3,8 +3,10 @@
   <div class="container">
    <div class="row">
     <div class="col s6">
-     <h1>Shinken</h1>
-     <h2>{$product}</h2>
+     <a href="/">
+      <h1>Shinken</h1>
+      <h2>{$product}</h2>
+     </a>
     </div>
     <div class="col s5 right-align">
      <form method="get" action="/search">
@@ -28,6 +30,7 @@
 <ul id="menu" class="side-nav">
  <li class="user-view">
  </li>
+ <li><a href="/"><i class="material-icons">dashboard</i>Dashboard</a></li>
  <li class="no-padding">
   <ul class="collapsible collapsible-accordion">
    <li>
