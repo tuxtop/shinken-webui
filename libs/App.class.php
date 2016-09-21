@@ -113,9 +113,21 @@ class App
                 stream_set_timeout($sock, 1);
                 fputs($sock, $cl);
                 $i = 0;
+                $append = null;
                 while ($line = fgets($sock))
                 {
                     if (preg_match('/invalid GET request/', $line)) return null;
+                    if (preg_match('/^[^"].+"[^"]+$/', $line) and (substr_count($line, '"')%2)==1)
+                    {
+                        $line = str_replace("\n", "\\n", $line);
+                        $append = $line;
+                        continue;
+                    }
+                    elseif ($append !== null)
+                    {
+                        $line = $append.$line;
+                        $append = null;
+                    }
                     if ($raw)
                     {
                         $rawdata.= $line;
@@ -130,7 +142,7 @@ class App
                         $tab = array();
                         for ($i=0; $i<count($headers); $i++)
                         {
-                            $tab[$headers[$i]] = $tmp[$i];
+                            $tab[$headers[$i]] = isset($tmp[$i]) ? $tmp[$i] : null;
                         }
                         $data[]= $tab;
                     }
