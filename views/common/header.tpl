@@ -26,6 +26,8 @@
 </header>
 
 <ul id="menu" class="side-nav">
+ <li class="user-view">
+ </li>
  <li class="no-padding">
   <ul class="collapsible collapsible-accordion">
    <li>
