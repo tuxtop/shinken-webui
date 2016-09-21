@@ -50,13 +50,15 @@ class Details
         # Update vars: last **
         foreach (['last_check', 'last_state_change'] as $idx)
         {
-            $row[$idx.'_date'] = date('d/m/Y @ H:i:s', $row['last_check']);
+            $row[$idx.'_date'] = date('d/m/Y @ H:i:s', $row[$idx]);
             $fmt = [];
-            $diff = (new \DateTime())->diff(new \DateTime(date('Y-m-d H:i:s', $row['last_check'])));
-            $fmt_labels = [ 'days'=>'day(s)', 'h'=>'hour(s)', 'm'=>'minute(s)', 'i'=>'second(s)' ];
+            $diff = (new \DateTime())->diff(new \DateTime(date('Y-m-d H:i:s', $row[$idx])));
+            $fmt_labels = [ 'days'=>'day(s)', 'h'=>'hour(s)', 'i'=>'minute(s)', 's'=>'second(s)' ];
             foreach ($fmt_labels as $flag=>$label)
             {
-                if ($diff->$flag) $fmt[]= $diff->$flag.' '.$label;
+                if ($diff->$flag <= 0) continue;
+                $fmt[]= $diff->$flag.' '.$label;
+                if ($flag == 'days') break;
             }
             $row[$idx.'_intv'] = implode(', ', $fmt);
         }
