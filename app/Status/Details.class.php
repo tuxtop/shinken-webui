@@ -58,7 +58,7 @@ class Details
             {
                 if ($diff->$flag <= 0) continue;
                 $fmt[]= $diff->$flag.' '.$label;
-                if ($flag == 'days') break;
+                if (count($fmt) >= 2) break;
             }
             $row[$idx.'_intv'] = implode(', ', $fmt);
         }
