@@ -15,7 +15,7 @@
 
    <p><i class="material-icons">network_check</i></p>
    <p>Services</p>
-   <p><span class="chip {$stats.hosts.errors.style}">{$stats.hosts.errors.percent}%</span></p>
+   <p><span class="chip {$stats.services.errors.style}">{$stats.services.errors.percent}%</span></p>
    <p class="grey-text">{$stats.services.number}</p>
 
   </div>
