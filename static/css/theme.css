@@ -173,6 +173,12 @@ header.shinken .dropdown-content
 	padding-left: 42px;
 	font-weight: normal;
 }
+#menu li.user-view
+{
+	background: #f0f0f0 url('/static/img/cave.jpg') no-repeat center center;
+	background-size: 100% auto;
+	height: 120px;
+}
 
 
 /**
@@ -220,6 +226,19 @@ h2.heading
 /**
  * Overwrite default Materialize style
  */
+.normal-text
+{
+	font-weight: normal !important;
+}
+textarea
+{
+	margin: 0px !important;
+}
+textarea.materialize-textarea:focus:not([readonly])
+{
+	border-bottom: 1px solid #bf360c;
+	box-shadow: 0 1px 0 0 #bf360c;
+}
 .btn
 {
 	text-transform: none;
@@ -260,6 +279,10 @@ input[type=checkbox].default-browser
 	position: relative;
 	left: auto;
 	opacity: 1;
+}
+.modal-footer .btn
+{
+	margin-left: 10px !important;
 }
 
 
@@ -373,4 +396,14 @@ div.col.status i
 	vertical-align: text-top;
 	font-size: 1.5rem;
 	margin-right: 10px;
+}
+div.controls .btn
+{
+	padding: 0px 12px 1px 12px;
+	font-size: 0.9em;
+}
+div.controls .btn i
+{
+	vertical-align: text-top;
+	margin: -10px 6px 0px 0px;
 }
