@@ -47,16 +47,19 @@ class Details
         list($headers, $rows) = $res;
         $row = $rows[0];
 
-        # Update vars: last check
-        $row['last_check_date'] = date('d/m/Y @ H:i:s', $row['last_check']);
-        $fmt = [];
-        $diff = (new \DateTime())->diff(new \DateTime(date('Y-m-d H:i:s', $row['last_check'])));
-        $fmt_labels = [ 'days'=>'day(s)', 'h'=>'hour(s)', 'm'=>'minute(s)', 'i'=>'second(s)' ];
-        foreach ($fmt_labels as $flag=>$label)
+        # Update vars: last **
+        foreach (['last_check', 'last_state_change'] as $idx)
         {
-            if ($diff->$flag) $fmt[]= $diff->$flag.' '.$label;
+            $row[$idx.'_date'] = date('d/m/Y @ H:i:s', $row['last_check']);
+            $fmt = [];
+            $diff = (new \DateTime())->diff(new \DateTime(date('Y-m-d H:i:s', $row['last_check'])));
+            $fmt_labels = [ 'days'=>'day(s)', 'h'=>'hour(s)', 'm'=>'minute(s)', 'i'=>'second(s)' ];
+            foreach ($fmt_labels as $flag=>$label)
+            {
+                if ($diff->$flag) $fmt[]= $diff->$flag.' '.$label;
+            }
+            $row[$idx.'_intv'] = implode(', ', $fmt);
         }
-        $row['last_check_intv'] = implode(', ', $fmt);
 
         # Update vars: ** interval
         foreach (['check','retry','notification'] as $type)
@@ -77,6 +80,7 @@ class Details
         }
 
         # Get view
+        $ref->app->title.= ' - Service details: '.$data->service.' @ '.$data->host;
         $ref->view->output('status/details.tpl', $row);
 
     }
