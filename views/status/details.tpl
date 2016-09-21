@@ -6,13 +6,15 @@
    <div class="row">
     <div class="col s4 status">
     {if $state == 3}
-     <span class="purple-text"><i class="material-icons">report</i> Service is UNKNOWN</span>
+     <span class="purple-text"><i class="material-icons">help</i> Service is UNKNOWN</span>
     {elseif $state == 2}
      <span class="red-text"><i class="material-icons">report</i> Service is CRITICAL</span>
     {elseif $state == 1}
      <span class="orange-text"><i class="material-icons">warning</i> Service is WARNING</span>
     {elseif $state == 0}
      <span class="green-text"><i class="material-icons">check_circle</i> Service is OK</span>
+    {else}
+     <span class="blue-grey-text"><i class="material-icons">remove_circle</i> Plugin error</span>
     {/if}
     </div>
     <div class="col s4"><span data-tooltip="{$last_state_change_date}" data-position="bottom">Since {$last_state_change_intv}</span></div>
