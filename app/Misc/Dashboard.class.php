@@ -33,7 +33,7 @@ class Dashboard
         # Load hosts stats
         $count = $ref->app->livestatus('GET hosts', array( 'Stats: business_impact >= 0' ), true);
         $errors = $ref->app->livestatus('GET hosts', array( 'Filter: state >= 1', 'Stats: business_impact >= 0' ), true);
-        $pct = $count ? 100-round(($errors/$count)*100, 0) : 0;
+        $pct = $count ? 100-round(($errors/$count)*100, 2) : 0;
         $a['stats']['hosts']['number'] = $count;
         $a['stats']['hosts']['errors'] = array(
             'number' => $errors,
@@ -44,7 +44,7 @@ class Dashboard
         # Load services stats
         $count = $ref->app->livestatus('GET services', array( 'Stats: business_impact >= 0' ), true);
         $errors = $ref->app->livestatus('GET services', array( 'Filter: state >= 1', 'Stats: business_impact >= 0' ), true);
-        $pct = $count ? 100-round(($errors/$count)*100, 0) : 0;
+        $pct = $count ? 100-round(($errors/$count)*100, 2) : 0;
         $a['stats']['services']['number'] = $count;
         $a['stats']['services']['errors'] = array(
             'number' => $errors,
