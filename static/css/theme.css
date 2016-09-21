@@ -168,6 +168,14 @@ header.shinken .dropdown-content
 	margin-right: 10px;
 	vertical-align: text-top;
 }
+#menu a:hover
+{
+	color: #bf360c;
+}
+#menu a:hover i
+{
+	color: #ff7043;
+}
 #menu .collapsible-body a
 {
 	padding-left: 42px;
