@@ -34,9 +34,12 @@ class App
         $this->ref = &$ref;
 
         # Start user session
-        session_name('shinken');
-        session_cache_expire(24*60);
-        session_start();
+        if (!isset($ref->ws))
+        {
+            session_name('shinken');
+            session_cache_expire(24*60);
+            session_start();
+        }
 
         # Initialize templating
         $view = new \Dwoo\Core();
@@ -51,7 +54,7 @@ class App
         $auth = isset($_SESSION['auth']) ? $_SESSION['auth'] : null;
 
         # 
-        register_shutdown_function(array($this, 'run'));
+        if (!isset($ref->ws)) register_shutdown_function(array($this, 'run'));
 
         # Start catching output
         ob_start();
@@ -80,6 +83,12 @@ class App
         $port = $this->config['livestatus']['port'];
         list($headers, $rawdata, $data, $is_column_opt) = array(null, '', array(), 0);
 
+        # No command, no result
+        if (!$command) return null;
+
+        # Force raw when it is a Nagios command
+        if (substr($command, 0, 3) != 'GET') $raw = true;
+
         # Build command line
         $cl = "${command}\n";
         if (is_array($opts))
@@ -107,7 +116,11 @@ class App
                 while ($line = fgets($sock))
                 {
                     if (preg_match('/invalid GET request/', $line)) return null;
-                    if ($raw) $rawdata.= $line;
+                    if ($raw)
+                    {
+                        $rawdata.= $line;
+                        continue;
+                    }
                     $line = trim($line);
                     if (!$line) break;
                     if (!$is_column_opt and $i==0) $headers = str_getcsv($line, ';', '"');
